@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: ludojunction
+    env: node
+    region: singapore # Change to your preferred region (e.g. oregon, frankfurt, singapore)
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /healthz
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: DATABASE_URL
+        sync: false # Set this in Render Dashboard under Environment Variables

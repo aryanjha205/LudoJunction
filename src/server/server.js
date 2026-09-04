@@ -10,7 +10,7 @@ try {
 }
 
 import { LudoServer } from './WebSocketServer.js';
-import { initDb } from './db.js';
+import { initDb, getGlobalLeaderboard } from './db.js';
 
 try {
     await initDb();
@@ -42,6 +42,36 @@ const MIME_TYPES = {
 const server = http.createServer(async (req, res) => {
 	try {
 		const urlPath = (req.url ?? '/').split('?')[0];
+
+		// CORS & Health check
+		res.setHeader('Access-Control-Allow-Origin', '*');
+		res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+		res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+		if (req.method === 'OPTIONS') {
+			res.writeHead(204);
+			res.end();
+			return;
+		}
+
+		if (urlPath === '/healthz' || urlPath === '/health') {
+			res.writeHead(200, { 'Content-Type': 'application/json' });
+			res.end(JSON.stringify({ status: 'ok', timestamp: new Date().toISOString() }));
+			return;
+		}
+
+		if (urlPath === '/api/leaderboard') {
+			try {
+				const leaderboard = await getGlobalLeaderboard();
+				res.writeHead(200, { 'Content-Type': 'application/json' });
+				res.end(JSON.stringify({ success: true, leaderboard: leaderboard || [] }));
+			} catch (err) {
+				res.writeHead(500, { 'Content-Type': 'application/json' });
+				res.end(JSON.stringify({ success: false, error: err.message }));
+			}
+			return;
+		}
+
 		const safePath = urlPath === '/' ? '/index.html' : urlPath;
 		const resolvedPath = path.join(publicRoot, safePath);
 
