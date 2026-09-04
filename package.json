@@ -1,0 +1,17 @@
+{
+  "name": "ludo-game",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Real-time Multiplayer Ludo Game PWA",
+  "main": "src/server/server.js",
+  "scripts": {
+    "start": "node src/server/server.js",
+    "dev": "node src/server/server.js",
+    "build": "node scripts/processAppIcon.mjs"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "pg": "^8.13.0",
+    "ws": "^8.18.0"
+  }
+}
