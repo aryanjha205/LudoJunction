@@ -55,7 +55,7 @@ npm run build
 ### 3. Configure Environment Variables
 Create a `.env` file in the root directory:
 ```env
-DATABASE_URL=postgresql://neondb_owner:npg_8S0VQHJWBtLG@ep-wandering-cherry-b32kw9bo-pooler.c-4.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require
+DATABASE_URL=postgresql://user:password@host/neondb?sslmode=require
 PORT=8080
 ```
 
