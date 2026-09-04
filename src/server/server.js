@@ -2,12 +2,21 @@ import http from 'node:http';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import 'dotenv/config';
+
+try {
+    await import('dotenv/config');
+} catch (err) {
+    console.log('[Server] dotenv not loaded, using process.env directly.');
+}
 
 import { LudoServer } from './WebSocketServer.js';
 import { initDb } from './db.js';
 
-await initDb();
+try {
+    await initDb();
+} catch (err) {
+    console.warn('[Server] DB init skipped:', err.message);
+}
 
 const port = process.env.PORT ? Number(process.env.PORT) : 8080;
 

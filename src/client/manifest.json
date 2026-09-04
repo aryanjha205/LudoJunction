@@ -1,7 +1,7 @@
 {
-  "name": "Ludo Game - Real-time Multiplayer",
-  "short_name": "Ludo Game",
-  "description": "Play Ludo Game online with friends in real-time multiplayer mode",
+  "name": "LudoJunction - Real-time Multiplayer",
+  "short_name": "LudoJunction",
+  "description": "Play LudoJunction online with friends in real-time multiplayer mode",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",

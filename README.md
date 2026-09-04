@@ -1,6 +1,6 @@
-# Ludo Game - Real-Time Multiplayer PWA & Vercel Ready
+# LudoJunction - Real-Time Multiplayer PWA & Vercel Ready
 
-An online real-time multiplayer Ludo Game built as a Progressive Web App (PWA) with Node.js and Neon PostgreSQL support.
+An online real-time multiplayer LudoJunction game built as a Progressive Web App (PWA) with Node.js and Neon PostgreSQL support.
 
 ## 🚀 Features
 

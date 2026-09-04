@@ -1,8 +1,8 @@
 {
-  "name": "ludo-game",
+  "name": "ludojunction",
   "version": "1.0.0",
   "type": "module",
-  "description": "Real-time Multiplayer Ludo Game PWA",
+  "description": "Real-time Multiplayer LudoJunction PWA",
   "main": "src/server/server.js",
   "scripts": {
     "start": "node src/server/server.js",

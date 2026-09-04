@@ -1,24 +1,22 @@
-import pg from 'pg';
-import dotenv from 'dotenv';
-
-dotenv.config();
-
-const { Pool } = pg;
 const connectionString = process.env.DATABASE_URL;
 
 let pool = null;
 
 if (connectionString) {
     try {
-        pool = new Pool({
-            connectionString,
-            ssl: {
-                rejectUnauthorized: false
-            }
-        });
-        console.log('[Database] Connecting to Neon PostgreSQL database...');
+        const pgModule = await import('pg');
+        const Pool = pgModule.default?.Pool || pgModule.Pool;
+        if (Pool) {
+            pool = new Pool({
+                connectionString,
+                ssl: {
+                    rejectUnauthorized: false
+                }
+            });
+            console.log('[Database] Connecting to Neon PostgreSQL database...');
+        }
     } catch (err) {
-        console.warn('[Database] Failed to create PostgreSQL pool, using memory fallback:', err.message);
+        console.warn('[Database] pg module not available, running in-memory mode:', err.message);
     }
 } else {
     console.log('[Database] No DATABASE_URL set. Running with in-memory leaderboard storage.');
